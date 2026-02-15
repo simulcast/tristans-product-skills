@@ -43,6 +43,7 @@ All artifacts go to the product repo. Determine the product repo using:
 | Engagement analysis | `research/` | `engagement-{YYYY-MM-DD}.md` |
 | Revenue analysis | `research/` | `revenue-{YYYY-MM-DD}.md` |
 | Decisions (ADRs) | `decisions/` | `ADR-{NNN}-{short-kebab-title}.md` |
+| Journal entries | `journal/` | `{YYYY-MM-DD}-{slug}.md` |
 
 ## Subagent Patterns
 
@@ -75,6 +76,17 @@ After each product skill, recommend the logical next step:
 
 Skills should end with: "Based on what we produced, I'd suggest running
 `/{next-skill}` next. Would you like to do that now?"
+
+## Journal Capture
+
+After completing the skill's primary artifact (the PRD, the discovery brief,
+the competitive analysis, etc.), invoke the `/journal` skill to capture a
+journal entry. This is not optional — every completed skill lifecycle should
+produce a journal entry. The journal skill will ask the user 1-2 questions
+and write the entry to `journal/` in the current product repo.
+
+If the skill was abandoned mid-conversation (no primary artifact produced),
+skip the journal step.
 
 ## The Iteration Loop
 
