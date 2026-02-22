@@ -39,6 +39,7 @@ All artifacts go to the product repo. Determine the product repo using:
 | Discovery briefs | `research/` | `discovery-{topic}.md` |
 | Assumption tests | `research/` | `assumption-test-{topic}.md` |
 | Competitive analysis | `research/` | `competitive-{space}.md` |
+| Interview snapshots | `research/interview-snapshots/` | `{participant-name}.md` |
 | UXR readouts | `research/` | `uxr-{topic}.md` |
 | Engagement analysis | `research/` | `engagement-{YYYY-MM-DD}.md` |
 | Revenue analysis | `research/` | `revenue-{YYYY-MM-DD}.md` |
@@ -67,9 +68,9 @@ After each product skill, recommend the logical next step:
                   └──→ /competitive-analysis                         └──→ /scope-cut
                   └──→ /strategy-brief
 
-/analyze-engagement ─┐
-/analyze-revenue ────┤──→ /prioritize ──→ /product-discovery or /write-prd
-/uxr-readout ────────┘
+/interview-snapshot (per transcript) ──→ /uxr-readout ──┐
+/analyze-engagement ─────────────────────────────────────┤──→ /prioritize ──→ /product-discovery or /write-prd
+/analyze-revenue ────────────────────────────────────────┘
 
 /decide ──→ decisions/ (resume current work)
 ```
@@ -118,6 +119,36 @@ Signals that trigger the loop:
   but let the user confirm before proceeding.
 - **Don't over-structure.** If a question has an obvious answer in context,
   skip it. The question flow is a guide, not a script.
+
+## Evidence Integrity
+
+These rules apply to any skill that synthesizes, analyzes, or interprets source material (research data, analytics, transcripts, etc.).
+
+### Hallucination Guards for Synthesis
+
+When combining evidence from multiple sources:
+
+1. **Source-lock every claim.** Every factual assertion must include a parenthetical source reference (participant name, file name, data row). No floating claims.
+2. **No Frankenquotes.** Never splice words from different sources into a single quote block. Use separate `> quote` blocks per source, even when they support the same theme.
+3. **Distinguish frequency from unanimity.** Always state N of M (e.g., "4 of 6 participants"). Never say "users want X" when 3 of 7 mentioned it.
+4. **Flag cross-source inferences.** When a finding requires connecting dots across sources rather than being stated directly, mark it `[cross-source inference]` with the supporting quotes from each source.
+
+### Few-Shot Calibration
+
+Before qualitative or quantitative analysis:
+
+1. **Offer a scoring rubric.** Ask the user if they have existing categories/thresholds, or if you should propose defaults.
+2. **Present 3-5 categories** with a one-line definition and one concrete example each (e.g., "Strong signal — user describes this as a blocker: 'I literally can't do my job without this'").
+3. **Apply consistently.** Once calibrated, tag every data point against the rubric. Note ambiguity (`[ambiguous — could be X or Y]`) rather than force-fitting.
+
+### Verification Pass
+
+Before presenting final output, silently run a verification pass:
+
+1. **Quote accuracy.** Confirm every quoted passage exists verbatim in the source material. Drop or fix any misquoted text.
+2. **Within-source contradictions.** Check whether the same source supports contradictory claims. If so, surface both claims with context.
+3. **Thin-evidence warnings.** Flag any finding supported by fewer than 2 sources with `[thin evidence]`. This is informational, not disqualifying.
+4. **Silent execution.** Run this pass before presenting results. Only surface issues to the user if problems are found. Proceed silently if clean.
 
 ## Downstream Pipeline (Advanced)
 

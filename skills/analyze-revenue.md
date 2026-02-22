@@ -45,7 +45,33 @@ Summarize what you see: "I found [N records] covering [date range] with [fields]
 
 Ask: **"What time range, and what are you worried about? Or should I just give you the full picture?"**
 
-## Step 6: Analyze
+## Step 6: Calibrate thresholds
+
+Ask: **"Do you have benchmark thresholds for revenue metrics, or should I propose defaults?"**
+
+- **If user has benchmarks:** Adopt them. Confirm by restating.
+- **If user says propose:** Present business-model-aware defaults:
+
+**Subscription:**
+
+| Metric | Healthy | Concerning | Critical |
+|--------|---------|------------|----------|
+| Monthly churn | <3% | 3-7% | >7% |
+| MRR growth | >10% MoM | 3-10% MoM | <3% MoM |
+| Net revenue retention | >100% | 90-100% | <90% |
+
+**One-time / Usage-based:**
+
+| Metric | Healthy | Concerning | Critical |
+|--------|---------|------------|----------|
+| Revenue growth | >15% QoQ | 5-15% QoQ | <5% QoQ |
+| Customer concentration | Top 10% = <30% rev | 30-50% | >50% |
+
+Adjust defaults based on company stage and market. Let the user modify before proceeding.
+
+Use these thresholds to label findings as `[healthy]`, `[concerning]`, or `[critical]` in subsequent steps.
+
+## Step 7: Analyze
 
 Launch subagent(s) using the Task tool for analysis, depending on business model:
 
@@ -70,14 +96,14 @@ Launch subagent(s) using the Task tool for analysis, depending on business model
 - Conversion funnel (free → paid)
 - Revenue concentration (what % comes from top 10% of customers)
 
-## Step 7: Present findings
+## Step 8: Present findings
 
 Present findings as tables:
 - Revenue trajectory with trend (growing/flat/declining, rate)
 - Key metrics with benchmarks where possible
 - Risk indicators (churn acceleration, revenue concentration, declining LTV)
 
-## Step 8: Interpret trajectory
+## Step 9: Interpret trajectory
 
 Be direct about the trajectory:
 
@@ -85,7 +111,7 @@ Be direct about the trajectory:
 
 Don't soften bad news — the user needs honest assessment to make good decisions.
 
-## Step 9: Identify levers
+## Step 10: Identify levers
 
 "The highest-impact thing you could do is [X] because [data-backed reason]."
 
@@ -98,7 +124,17 @@ Rank 2-3 levers:
 
 Each lever should reference specific numbers from the analysis.
 
-## Step 10: Write the analysis
+## Step 11: Verification pass
+
+Before presenting the analysis, silently run a verification pass:
+
+1. **Arithmetic spot-check.** Re-derive MRR, churn rate, and growth rate from the raw data. Confirm they match your reported values. Correct any discrepancies before presenting.
+2. **Period consistency.** Confirm that all comparisons use matching time windows. Note any unavoidable mismatches.
+3. **Thin-evidence warnings.** Flag any finding based on limited data (e.g., <3 months of history for trend claims, single-customer revenue spikes) with `[limited data]`.
+
+Run this silently. Only surface issues to the user if problems are found.
+
+## Step 12: Write the analysis
 
 Write to `research/revenue-{YYYY-MM-DD}.md`.
 
@@ -136,11 +172,14 @@ Structure:
 
 ## Detailed Findings
 {Supporting analysis, cohort breakdowns, funnel data}
+
+## Confidence Notes
+{Thresholds used, any arithmetic discrepancies found and corrected, limited-data warnings, period-matching notes. If verification passed clean, state "Verification pass clean."}
 ```
 
 Present for approval before writing.
 
-## Step 11: Report
+## Step 13: Report
 
 Summarize trajectory and top lever in 2-3 sentences.
 

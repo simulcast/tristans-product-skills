@@ -44,7 +44,25 @@ Present options:
 
 Let the user pick one or more.
 
-## Step 6: Analyze
+## Step 6: Calibrate thresholds
+
+Ask: **"Do you have benchmark thresholds for these metrics, or should I propose defaults?"**
+
+- **If user has benchmarks:** Adopt them. Confirm by restating.
+- **If user says propose:** Present a table of defaults:
+
+| Metric | Healthy | Concerning | Critical |
+|--------|---------|------------|----------|
+| Day-1 retention | >40% | 20-40% | <20% |
+| Day-7 retention | >20% | 10-20% | <10% |
+| WAU/MAU ratio | >40% | 25-40% | <25% |
+| Session frequency | >3x/week | 1-3x/week | <1x/week |
+
+Adjust defaults based on the product type and data source. Let the user modify before proceeding.
+
+Use these thresholds to label findings as `[healthy]`, `[concerning]`, or `[critical]` in subsequent steps.
+
+## Step 7: Analyze
 
 Launch subagent(s) using the Task tool for analysis, depending on the question:
 
@@ -55,7 +73,7 @@ Launch subagent(s) using the Task tool for analysis, depending on the question:
 
 The subagent reads the data files and computes/summarizes metrics.
 
-## Step 7: Present findings
+## Step 8: Present findings
 
 Present findings with context:
 - Key metrics with trend direction (up/down/flat)
@@ -64,7 +82,7 @@ Present findings with context:
 
 Format as tables where possible for clarity.
 
-## Step 8: Interpret
+## Step 9: Interpret
 
 Be opinionated — don't just present data, tell the user what it means:
 
@@ -72,13 +90,23 @@ Be opinionated — don't just present data, tell the user what it means:
 
 Connect metrics to product health. A number is just a number; an interpretation is actionable.
 
-## Step 9: Recommend product action
+## Step 10: Recommend product action
 
 "Based on this data, I'd suggest [action]. Here's why."
 
 Connect recommendations to specific metrics. Be concrete: "The onboarding funnel drops 40% at step 3 — simplify that step" not "improve onboarding."
 
-## Step 10: Write the analysis
+## Step 11: Verification pass
+
+Before presenting the analysis, silently run a verification pass:
+
+1. **Computation spot-check.** Re-derive 2-3 key numbers from the raw data to confirm they match your reported values. If any discrepancy is found, correct before presenting.
+2. **Period consistency.** Confirm that all comparisons use matching time windows (e.g., don't compare a 30-day period to a 28-day period without noting the difference).
+3. **Thin-evidence warnings.** Flag any finding based on small sample sizes (e.g., a cohort with <10 users) with `[small sample]`.
+
+Run this silently. Only surface issues to the user if problems are found.
+
+## Step 12: Write the analysis
 
 Write to `research/engagement-{YYYY-MM-DD}.md`.
 
@@ -112,11 +140,14 @@ Structure:
 1. {Action with data-backed rationale}
 2. {Action with data-backed rationale}
 3. ...
+
+## Confidence Notes
+{Thresholds used, any computation discrepancies found and corrected, small-sample warnings, period-matching notes. If verification passed clean, state "Verification pass clean."}
 ```
 
 Present for approval before writing.
 
-## Step 11: Report
+## Step 13: Report
 
 Summarize health signals and top recommendation.
 
