@@ -35,6 +35,7 @@ All artifacts go to the product repo. Determine the product repo using:
 |--------------|-----------|-------------------|
 | PRDs | `prd/` | `{feature}.md` |
 | Strategy briefs | `strategy/` | `{topic}.md` |
+| Opportunity trees | `strategy/` | `opportunity-tree-{topic}.md` |
 | Priority stacks | `strategy/` | `priorities-{YYYY-MM-DD}.md` |
 | Discovery briefs | `research/` | `discovery-{topic}.md` |
 | Assumption tests | `research/` | `assumption-test-{topic}.md` |
@@ -71,6 +72,9 @@ After each product skill, recommend the logical next step:
 /interview-snapshot (per transcript) ──→ /uxr-readout ──┐
 /analyze-engagement ─────────────────────────────────────┤──→ /prioritize ──→ /product-discovery or /write-prd
 /analyze-revenue ────────────────────────────────────────┘
+
+/uxr-readout ──→ /opportunity-map ──→ /write-prd
+                                  └──→ /prioritize (if competing target opportunities)
 
 /decide ──→ decisions/ (resume current work)
 ```

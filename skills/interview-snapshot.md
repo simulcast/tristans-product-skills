@@ -19,7 +19,7 @@ Determine the product repo:
 - If the current directory is a code repo, read `.factory-config.json` for `productRepo`
 - If unclear, ask the user which product repo to use
 
-Ensure `research/interview-snapshots/` directory exists. If not, create it.
+Ensure `research/uxr/interview-snapshots/` directory exists. If not, create it.
 
 ## Step 2: Get transcript
 
@@ -27,7 +27,7 @@ The transcript file path may be passed as an argument to this skill. If not, ask
 
 **"Which transcript should I process? Point me at a file."**
 
-Glob `research/interview-transcripts/*.md` and present any matches as options. Read the full transcript once located.
+Glob `research/uxr/interview-transcripts/*.md` and present any matches as options. Read the full transcript once located.
 
 ## Step 3: Extract Quick Facts
 
@@ -67,6 +67,8 @@ Take the user's input, then find supporting verbatim quotes from the transcript 
 
 After the user's opportunities are confirmed, propose additional opportunities you spotted in the transcript, **one at a time**. Each must include a supporting verbatim quote.
 
+**Signal quality filter:** Only propose opportunities grounded in *observed behavior, described friction, or workarounds* — not hypothetical statements like "I would pay for X" or "it would be nice if." Stated willingness to pay is unreliable; what people actually do (and struggle with) is the signal.
+
 For each: **"I also noticed this opportunity: {opportunity}. Want to include it?"**
 
 After presenting all candidates (or the user says enough), ask: **"Anything else I missed?"**
@@ -93,7 +95,7 @@ Resolve each contradiction before proceeding:
 
 ## Step 11: Write snapshot
 
-Assemble the full snapshot and present it for final review. Then write to `research/interview-snapshots/{participant-name}.md` where `{participant-name}` is a lowercase kebab-case name derived from the participant's name.
+Assemble the full snapshot and present it for final review. Then write to `research/uxr/interview-snapshots/{participant-name}.md` where `{participant-name}` is a lowercase kebab-case name derived from the participant's name.
 
 Output format:
 
@@ -148,5 +150,5 @@ Output format:
 Commit the file. Summarize the snapshot in 3-4 bullets.
 
 Recommend next step:
-- If more transcripts exist in `research/interview-transcripts/` that don't have snapshots yet → "Run `/interview-snapshot` on the next transcript."
+- If more transcripts exist in `research/uxr/interview-transcripts/` that don't have snapshots yet → "Run `/interview-snapshot` on the next transcript."
 - If enough snapshots have accumulated (3+) → "You have {N} snapshots. Run `/uxr-readout` to synthesize themes across them."
