@@ -128,5 +128,3 @@ No. These skills work standalone. The full pipeline (scenario generation, implem
 These skills are designed for Claude Code's slash command system. They use Claude Code-specific features like the `Task` tool for parallel research. They won't work directly in other tools, but the underlying methodology (structured questioning, incremental validation) applies anywhere.
 
 ---
-
-Built by [Tristan](https://github.com/simulcast). Part of the [Zero Dependencies](https://zerodependencies.com) newsletter.
