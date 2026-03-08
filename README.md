@@ -1,6 +1,6 @@
 # Product Management Skills for Claude Code
 
-12 interactive skills that turn Claude Code into a PM partner.
+13 interactive skills that turn Claude Code into a PM partner.
 
 These skills guide you through structured product management workflows — from initial discovery through PRD authoring, competitive analysis, and prioritization. Each skill is a conversational protocol: it asks you questions, challenges your thinking, and produces a concrete artifact.
 
@@ -20,6 +20,7 @@ These skills guide you through structured product management workflows — from 
 | `/analyze-engagement` | Analyze product engagement data and surface health signals |
 | `/analyze-revenue` | Analyze revenue data, identify growth levers |
 | `/prioritize` | Stack-rank competing priorities using structured evaluation |
+| `/executive-communication` | Improve drafts and talking points using executive communication principles |
 
 ## How they work
 
